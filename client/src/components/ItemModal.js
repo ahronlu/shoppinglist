@@ -15,6 +15,7 @@ import { addItem } from "../actions/ItemActions";
 export default function ItemModal() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
+  const [error, setError] = useState("");
   const [modal, setModal] = useState(false);
 
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -24,11 +25,13 @@ export default function ItemModal() {
   };
 
   const onChange = (e) => {
+    setError("");
     setName(e.target.value);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if (!name) return setError("Please enter an item");
     dispatch(addItem({ name }));
     setName("");
     toggle();
@@ -57,6 +60,7 @@ export default function ItemModal() {
                 placeholder="Add shopping item"
                 onChange={onChange}
               />
+              {error && <p className="text-danger">{error}</p>}
               <Button color="dark" style={{ marginTop: "2rem" }} block>
                 Add Item
               </Button>

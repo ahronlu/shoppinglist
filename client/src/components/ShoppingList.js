@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
+import { Container, ListGroup, ListGroupItem } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { useSelector, useDispatch } from "react-redux";
 import { getItems, deleteItem } from "../actions/ItemActions";
@@ -23,14 +23,10 @@ export default function ShoppingList() {
               <ListGroupItem>
                 {name}{" "}
                 {isAuthenticated ? (
-                  <Button
-                    className="remove-btn"
-                    color="danger"
-                    size="sm"
+                  <i
                     onClick={() => dispatch(deleteItem(_id))}
-                  >
-                    Delete
-                  </Button>
+                    class="fas fa-trash-alt"
+                  ></i>
                 ) : null}
               </ListGroupItem>
             </CSSTransition>
