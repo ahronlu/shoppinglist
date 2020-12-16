@@ -55,6 +55,8 @@ export default function LoginModal() {
     dispatch(login(user));
   };
 
+  const { email, password } = user;
+
   return (
     <div>
       <NavLink onClick={toggle} href="#">
@@ -72,9 +74,11 @@ export default function LoginModal() {
                 type="email"
                 name="email"
                 id="email"
+                value={email}
                 placeholder="Email"
                 className="mb-3"
                 onChange={onChange}
+                required
               />
 
               <Label for="password">Password</Label>
@@ -82,11 +86,18 @@ export default function LoginModal() {
                 type="password"
                 name="password"
                 id="password"
+                value={password}
                 placeholder="Password"
                 className="mb-3"
                 onChange={onChange}
+                minlength="6"
               />
-              <Button color="dark" style={{ marginTop: "2rem" }} block>
+              <Button
+                disabled={!email || !password}
+                color="dark"
+                style={{ marginTop: "2rem" }}
+                block
+              >
                 Login
               </Button>
             </FormGroup>

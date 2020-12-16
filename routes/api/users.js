@@ -5,11 +5,15 @@ const jwt = require("jsonwebtoken");
 
 // User Model
 const User = require("../../models/User");
+const {
+  registerValidationRules,
+  validate,
+} = require("../../middleware/validator");
 
 // @route   Post api/users
 // @desc    Register new user
 // @access  Public
-router.post("/", (req, res) => {
+router.post("/", registerValidationRules(), validate, (req, res) => {
   const { name, email, password } = req.body;
 
   // Simple validation

@@ -55,6 +55,8 @@ export default function RegisterModal() {
     dispatch(register(user));
   };
 
+  const { name, email, password } = user;
+
   return (
     <div>
       <NavLink onClick={toggle} href="#">
@@ -72,9 +74,12 @@ export default function RegisterModal() {
                 type="text"
                 name="name"
                 id="name"
+                value={name}
                 placeholder="Name"
                 className="mb-3"
                 onChange={onChange}
+                minlength="2"
+                required
               />
 
               <Label for="email">Email</Label>
@@ -82,9 +87,11 @@ export default function RegisterModal() {
                 type="email"
                 name="email"
                 id="email"
+                value={email}
                 placeholder="Email"
                 className="mb-3"
                 onChange={onChange}
+                required
               />
 
               <Label for="password">Password</Label>
@@ -92,11 +99,19 @@ export default function RegisterModal() {
                 type="password"
                 name="password"
                 id="password"
+                value={password}
                 placeholder="Password"
                 className="mb-3"
                 onChange={onChange}
+                minlength="6"
+                required
               />
-              <Button color="dark" style={{ marginTop: "2rem" }} block>
+              <Button
+                disabled={!name || !email || !password}
+                color="dark"
+                style={{ marginTop: "2rem" }}
+                block
+              >
                 Register
               </Button>
             </FormGroup>

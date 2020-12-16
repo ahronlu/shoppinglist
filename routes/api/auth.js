@@ -6,11 +6,15 @@ const auth = require("../../middleware/auth");
 
 // User Model
 const User = require("../../models/User");
+const {
+  loginValidationRules,
+  validate,
+} = require("../../middleware/validator");
 
 // @route   POST api/auth
 // @desc    Auth user
 // @access  Public
-router.post("/", (req, res) => {
+router.post("/", loginValidationRules(), validate, (req, res) => {
   const { email, password } = req.body;
 
   // Simple validation
