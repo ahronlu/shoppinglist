@@ -21,6 +21,7 @@ export default function ShoppingList() {
           {items.map(({ _id, name }) => (
             <CSSTransition key={_id} timeout={500} classNames="fade">
               <ListGroupItem>
+                {name}{" "}
                 {isAuthenticated ? (
                   <Button
                     className="remove-btn"
@@ -28,10 +29,9 @@ export default function ShoppingList() {
                     size="sm"
                     onClick={() => dispatch(deleteItem(_id))}
                   >
-                    &times;
+                    Delete
                   </Button>
                 ) : null}
-                {name}
               </ListGroupItem>
             </CSSTransition>
           ))}
