@@ -16,8 +16,8 @@ export default function ShoppingList() {
 
   return (
     <Container>
-      <ListGroup>
         <TransitionGroup className="shopping-list">
+          <ListGroup>
           {items.map(({ _id, name }) => (
             <CSSTransition key={_id} timeout={500} classNames="fade">
               <ListGroupItem>
@@ -31,8 +31,8 @@ export default function ShoppingList() {
               </ListGroupItem>
             </CSSTransition>
           ))}
+          </ListGroup>
         </TransitionGroup>
-      </ListGroup>
     </Container>
   );
 }
