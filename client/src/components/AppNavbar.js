@@ -27,7 +27,7 @@ export default function AppNavbar() {
   const authLinks = (
     <Fragment>
       <NavItem>
-        <span className="navbar-text mr-3">
+        <span className="navbar-text mr-3 text-white">
           <strong>{user ? `Welcome ${user.name}` : ""}</strong>
         </span>
       </NavItem>
