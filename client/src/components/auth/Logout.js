@@ -8,7 +8,7 @@ export default function Logout() {
 
   return (
     <>
-      <NavLink onClick={() => dispatch(logout())} href="#">
+      <NavLink className="text-white" onClick={() => dispatch(logout())} href="#">
         Logout
       </NavLink>
     </>
