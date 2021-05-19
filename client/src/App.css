@@ -23,3 +23,8 @@
 .fas.fa-trash-alt:hover {
   opacity: 0.5;
 }
+
+.navbar a,
+.navbar span {
+  color: #fff!important;
+}
