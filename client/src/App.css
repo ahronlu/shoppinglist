@@ -13,6 +13,12 @@
   background-color: #333!important;
   color: #f5f5f5!important;
 }
+
+.btn-dark {
+    color: #f5f5f5!important;
+    background-color: #212121!important;
+    border-color: #333!important;
+}
  
 input {
   background: #212121!important;
