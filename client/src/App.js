@@ -17,10 +17,12 @@ export default function App() {
   return (
     <div className="App">
       <AppNavbar />
-      <Container>
-        <ItemModal />
-        <ShoppingList />
-      </Container>
+      <main>
+        <Container>
+          <ItemModal />
+          <ShoppingList />
+        </Container>
+      </main>
     </div>
   );
 }
