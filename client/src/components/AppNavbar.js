@@ -49,7 +49,7 @@ export default function AppNavbar() {
   );
 
   return (
-    <div>
+    <header>
       <Navbar color="dark" dark expand="sm" className="mb-5">
         <Container>
           <NavbarBrand href="/">ShoppingList</NavbarBrand>
@@ -61,6 +61,6 @@ export default function AppNavbar() {
           </Collapse>
         </Container>
       </Navbar>
-    </div>
+    </header>
   );
 }
