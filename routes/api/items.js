@@ -8,31 +8,49 @@ const Item = require("../../models/Item");
 // @route GET api/items
 // @desc Get All Items
 // @access Public
-router.get("/", (req, res) => {
-  Item.find({user: req.user.id})
-    .sort({ date: -1 })
-    .then((items) => res.json(items));
+router.get("/", async(req, res) => {
+  try {
+    const items = awiat Item.find({ user: req.user.id }).sort({ date: -1 });
+    return res.json(items);
+  } catch(err) {
+    return res.status(500).json({ message: "Server error" });
+  } 
 });
 
 // @route   POST api/items
 // @desc    Create An Item
 // @access  Private
-router.post("/", auth, (req, res) => {
+router.post("/", auth, async(req, res) => {
+  if(!req.body.name) return res.status(400).json({ message: "Please add an item!" });
+  
   const newItem = new Item({
     user: req.user.id,
     name: req.body.name,
   });
-
-  newItem.save().then((item) => res.json(item));
+  
+  try {
+    const item = await newItem.save();
+    return res.json(item);
+  } catch(err) {
+    return res.status(500).json({ message: "Server error" });
+  }
 });
 
 // @route   DELETE api/items
 // @desc    Delete An Item
 // @access  Private
-router.delete("/:id", auth, (req, res) => {
-  Item.findById(req.params.id)
-    .then((item) => item.remove().then(() => res.json({ success: true })))
-    .catch((err) => res.status(404).json({ success: false }));
+router.delete("/:id", auth, async(req, res) => {
+  try {
+    const item = await Item.findById(req.params.id);
+
+    if (item.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'Not authorized' });
+    }
+    
+    res.json({msg: 'Contact removed'});
+  } catch(err) {
+    return res.status(500).json({ message: "Server error" });
+  }
 });
 
 module.exports = router;
