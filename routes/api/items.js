@@ -9,7 +9,7 @@ const Item = require("../../models/Item");
 // @desc Get All Items
 // @access Public
 router.get("/", (req, res) => {
-  Item.find()
+  Item.find({user: req.user.id})
     .sort({ date: -1 })
     .then((items) => res.json(items));
 });
