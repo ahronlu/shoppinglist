@@ -10,7 +10,7 @@ const Item = require("../../models/Item");
 // @access Public
 router.get("/", async(req, res) => {
   try {
-    const items = awiat Item.find({ user: req.user.id }).sort({ date: -1 });
+    const items = await Item.find({ user: req.user.id }).sort({ date: -1 });
     return res.json(items);
   } catch(err) {
     return res.status(500).json({ message: "Server error" });
