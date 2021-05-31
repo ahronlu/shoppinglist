@@ -44,7 +44,7 @@ export default function ItemModal() {
           Add Item
         </Button>
       ) : (
-        <h4 className="mb-3 ml-4">Please login to manage items</h4>
+        <p className="mb-3 ml-4">Please login to manage your items</p>
       )}
 
       <Modal isOpen={modal} toggle={toggle}>

@@ -8,11 +8,12 @@ const Item = require("../../models/Item");
 // @route GET api/items
 // @desc Get All Items
 // @access Public
-router.get("/", async(req, res) => {
+router.get("/", auth, async(req, res) => {
   try {
     const items = await Item.find({ user: req.user.id }).sort({ date: -1 });
     return res.json(items);
   } catch(err) {
+    console.log(err);
     return res.status(500).json({ message: "Server error" });
   } 
 });
@@ -32,6 +33,7 @@ router.post("/", auth, async(req, res) => {
     const item = await newItem.save();
     return res.json(item);
   } catch(err) {
+    console.log(err);
     return res.status(500).json({ message: "Server error" });
   }
 });
@@ -46,9 +48,12 @@ router.delete("/:id", auth, async(req, res) => {
     if (item.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'Not authorized' });
     }
+
+    await item.remove();
     
     res.json({msg: 'Contact removed'});
   } catch(err) {
+    console.log(err);
     return res.status(500).json({ message: "Server error" });
   }
 });
