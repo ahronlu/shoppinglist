@@ -10,7 +10,7 @@ const Item = require("../../models/Item");
 // @access Public
 router.get("/", auth, async(req, res) => {
   try {
-    const items = await Item.find({ user: req.user.id }).sort({ date: -1 });
+    const items = await Item.find({ user: req.user.id }).populate("user", ["name", "email"]).sort({ date: -1 });
     return res.json(items);
   } catch(err) {
     console.log(err);
