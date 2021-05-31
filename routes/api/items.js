@@ -19,6 +19,7 @@ router.get("/", (req, res) => {
 // @access  Private
 router.post("/", auth, (req, res) => {
   const newItem = new Item({
+    user: req.user.id,
     name: req.body.name,
   });
 
